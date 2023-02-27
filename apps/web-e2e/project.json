@@ -4,17 +4,17 @@
   "sourceRoot": "apps/web-e2e/src",
   "projectType": "application",
   "targets": {
-    "prepare-e2e": {
+    "run-setup-e2e": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx ts-node --project apps/web-e2e apps/web-e2e/src/support/setup.ts"
+          "npx ts-node -r tsconfig-paths/register --project apps/web-e2e/tsconfig.json apps/web-e2e/src/support/setup.ts"
         ],
         "parallel": false
       }
     },
     "e2e": {
-      "dependsOn": ["prepare-e2e"],
+      "dependsOn": ["run-setup-e2e"],
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/web-e2e/cypress.config.ts",
